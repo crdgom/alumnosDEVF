@@ -5,10 +5,9 @@ import addStudent from './alumnos.js';
 
 function urlCheck() {
     let url = window.location.pathname;
-    console.log(url);
     if (url === "/dashboard") {
         
-    } else if (url === "/alumnos") {
+    } else if (url === "/public/infoAlumno.html") {
         
     } else if (url === "/public/create-student.html") {
         let registrarAlumno = document.getElementById('registrarAlumno');
@@ -18,9 +17,9 @@ function urlCheck() {
             e.preventDefault();
             registrarAlumnoFn();
         });
-    } else if (url === "/public/dashboard") {
+    } else if (url === "/public/dashboard.html") {
         profesorStorage();
-    } else if (url === "/public/") {
+    } else if (url === "/public/index.html") {
         let loginButton = document.getElementById('loginButton');
         let loginfn = login;
 
@@ -28,6 +27,14 @@ function urlCheck() {
             e.preventDefault();
             loginfn();
         });
+    } else if (url === "/public/crear-grupo.html") {
+            let registrarGrupo = document.getElementById('registrarGrupo');
+            let registrarGrupoFn = addGroup;
+    
+            registrarGrupo.addEventListener('click', function (e) {
+                e.preventDefault();
+                registrarGrupoFn();
+            });
     } else {
         
     }

@@ -1,8 +1,8 @@
-import {alumnos} from './data.js'
 import alumnosLocal from './dataHandler.js';
 
 class Student {
-    constructor(nombre, apellido, edad, materias, calificaciones) {
+    constructor(id, nombre, apellido, edad, materias, calificaciones) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -17,12 +17,13 @@ class Materias extends Student {
         super(materias);
         this.materias = materias;
     }
+
 }
 
 class Calificaciones extends Student {
     constructor(calificaciones) {
         super(calificaciones);
-        this.calificaciones = calificaciones;
+        this.calificaciones = calificaciones
     }
 
     promedio() {
@@ -32,24 +33,28 @@ class Calificaciones extends Student {
     }
 }
 
+
+
 function createStudent() {
     try{
         let nombre = document.getElementById("nombre").value;
         let apellido = document.getElementById("apellido").value;
         let edad = document.getElementById("edad").value;
         let materias = document.getElementById("materias").value.toUpperCase();
-        console.log(materias);
+        
         
         if (materias === "") {
             materias = ["No hay materias"];
         } else {
+            let lastid = localStorage.getItem("students");
+            let lastidArray = JSON.parse(lastid);
+            let lastidObj = lastidArray[lastidArray.length - 1];
+            let lastidNum = lastidObj.id;
+            let newid = lastidNum + 1;
+            
             let materia = materias.split(",");
-            // construir un objeto con las materias
-            let materiasObj = [];
-            for (let i = 0; i < materia.length; i++) {
-                materiasObj.push(materia[i]);
-            }
-            const student = new Student(nombre, apellido, edad, materiasObj)
+            console.log(materia);
+            const student = new Student(newid, nombre, apellido, edad, materia);
             return student;
         }
     }catch{
@@ -57,26 +62,29 @@ function createStudent() {
     }
 }
 
-// función para agregar alumno e insertarlo en alumnos data.js si el profesor tiene permisos 
+// función para agregar alumno e insertarlo en alumnos data.js si el profesor tiene permisos
 
 function addStudent(){
-    let user = JSON.parse(sessionStorage.getItem('user'));
-    let permiso = JSON.parse(sessionStorage.getItem('permisos'));
-    if (user === user && permiso === true) {
-        let listaAlumnos = localStorage.getItem("students");
-        // convertimmos lista alumnos en un array
-        let alumnosArray = JSON.parse(listaAlumnos);
-        console.log(alumnosArray);
-        let alumno = createStudent();
-        // agregamos el nuevo alumno al array
-        alumnosArray.push(alumno);
-        // convertimos el array en json y lo guardamos en local storage
-        localStorage.setItem("students", JSON.stringify(alumnosArray));
-        // devolvemos al usuario al dashboard
-        window.location.href = "http://127.0.0.1:5500/public/dashboard.html";
-        console.log(window.location.href);
-    } else {
-        alert("No tiene permisos para agregar alumnos");
+    try{
+        let user = JSON.parse(sessionStorage.getItem('user'));
+        let permiso = JSON.parse(sessionStorage.getItem('permisos'));
+        if (user === user && permiso === true) {
+            let listaAlumnos = localStorage.getItem("students");
+            // convertimmos lista alumnos en un array
+            let alumnosArray = JSON.parse(listaAlumnos);
+            let alumno = createStudent();
+            // agregamos el nuevo alumno al array
+            alumnosArray.push(alumno);
+            // convertimos el array en json y lo guardamos en local storage
+            localStorage.setItem("students", JSON.stringify(alumnosArray));
+            // devolvemos al usuario al dashboard
+            window.location.href = "http://127.0.0.1:5500/public/dashboard.html";
+            console.log(window.location.href);
+        } else {
+            alert("No tiene permisos para agregar alumnos");
+        }
+    }catch{
+        alert("Error al agregar alumno");
     }
 }
 

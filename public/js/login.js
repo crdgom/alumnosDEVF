@@ -1,7 +1,7 @@
 // 
 function login(){
-
-    let user = document.getElementById('inputName').value;
+    try{
+        let user = document.getElementById('inputName').value;
     console.log("el usuario escrito en el formulario es ", user);
     let password = document.getElementById('inputPassword').value;
     console.log("el password escrito en el formulario es ", password);
@@ -48,6 +48,12 @@ function login(){
 
         }
     }
+    }
+    catch(e){
+        console.log(e);
+    }
+
+    
 }
 
 

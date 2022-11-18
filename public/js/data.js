@@ -20,6 +20,7 @@ let profesores = [
 let alumnos = [
 
     {
+        "id": 1,
         "nombre": "juan",
         "apellido": "alba",
         "edad": "23",
@@ -39,7 +40,8 @@ let alumnos = [
             }
         
     },
-    {
+    {   
+        "id": 2,
         "nombre": "juan",
         "apellido": "alba",
         "edad": "23",

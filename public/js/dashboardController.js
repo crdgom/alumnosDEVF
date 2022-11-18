@@ -24,7 +24,7 @@ function permisos(){
 
 }
 
-// recuperar studenst de localStorage
+// recuperar students de localStorage
 
 let students = JSON.parse(localStorage.getItem('students'));
 
@@ -40,29 +40,49 @@ alumnosCountNumber.innerHTML = alumnosCount
 
 // recuperar el numero de materias
 
-let materiasCount = document.getElementById('materiasCount');
 
+let materiasCount = document.getElementById('materiasCount');
+ 
 
 function listAlumnos(){
     let alumnosList = document.getElementById('table');
+    
 
         for (let i = 0; i < alumnoBase.length; i++) {
-    
             alumnosList.innerHTML += `
         <tr>
-            <td>${alumnoBase[i].nombre}</td>
+            <td id="${alumnoBase[i].id}"><a href="">${alumnoBase[i].nombre}</a></td>
             <td>${alumnoBase[i].apellido}</td>
             <td>${alumnoBase[i].edad}</td>
-            <td>${alumnoBase[i].grupo}</td>
-            <td id="materias">${alumnoBase[i].materias}</td>
-            <td id="calificaciones"></td>
+            <td class="grupo">${alumnoBase[i].grupo}</td>
         </tr>
         `
-
     }
-    
-
 }
+
+// funcion para recuperar el id del alimno cuando se da click en el nombre de la tabla HTML
+
+function alumnoInfo(){
+    let alumnosList = document.getElementById('table');
+    alumnosList.addEventListener('click', function(e){
+        e.preventDefault();
+        let id = e.target.parentElement.id;
+        let alumno = alumnoBase.find(alumno => alumno.id == id);
+        localStorage.setItem('alumnoInfo', JSON.stringify(alumno));
+        window.location.href = "http://127.0.0.1:5500/public/alumno-info.html";
+    })
+}
+
+function grupoCheck(){
+    let grupoCheck = document.querySelectorAll('.grupo');
+    for (let i = 0; i < grupoCheck.length; i++) {
+        if (grupoCheck[i].innerHTML === "undefined") {
+            grupoCheck[i].innerHTML = "Grupo no asignado"
+        } else {
+        }
+    }   
+}
+
 
 
 
@@ -71,4 +91,6 @@ function listAlumnos(){
 
 
 listAlumnos()
+grupoCheck()
+alumnoInfo()
 
