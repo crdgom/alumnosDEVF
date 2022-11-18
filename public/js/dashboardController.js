@@ -12,17 +12,7 @@ let userInfo = document.getElementById('userInfo');
 
 userInfo.innerHTML = user
 
-// comprobar permisos
 
-function permisos(){
-
-    if (permiso !== true) {
-        console.log("no tiene permisos");
-    } else {
-        console.log("tiene permisos");
-    }
-
-}
 
 // recuperar students de localStorage
 
@@ -49,12 +39,30 @@ function listAlumnos(){
     
 
         for (let i = 0; i < alumnoBase.length; i++) {
+
+            let cals
+            let promedio
+
+            if (alumnoBase[i].hasOwnProperty("calificaciones")) {
+
+                cals = Object.values(alumnoBase[i].calificaciones)
+                // promediar las calificaciones
+                promedio = cals.reduce((a, b) => a + b) / cals.length;
+
+            }else {
+
+                    cals = "No hay calificaciones"
+                    promedio = "No hay calificaciones"
+
+                }
             alumnosList.innerHTML += `
         <tr>
             <td id="${alumnoBase[i].id}"><a href="">${alumnoBase[i].nombre}</a></td>
             <td>${alumnoBase[i].apellido}</td>
             <td>${alumnoBase[i].edad}</td>
             <td class="grupo">${alumnoBase[i].grupo}</td>
+            <td class="grupo">${alumnoBase[i].materias}</td>
+            <td>${promedio}</td>
         </tr>
         `
     }

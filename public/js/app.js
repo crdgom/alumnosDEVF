@@ -1,6 +1,7 @@
 import login from './../js/login.js';
 import profesorStorage from './../js/sesionStorage.js';
 import addStudent from './alumnos.js';
+import addGroup from './newGroup.js';
 
 
 function urlCheck() {

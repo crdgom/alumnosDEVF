@@ -12,27 +12,6 @@ class Student {
 
 }
 
-class Materias extends Student {
-    constructor(materias) {
-        super(materias);
-        this.materias = materias;
-    }
-
-}
-
-class Calificaciones extends Student {
-    constructor(calificaciones) {
-        super(calificaciones);
-        this.calificaciones = calificaciones
-    }
-
-    promedio() {
-        let calificaciones = Object.values(this.calificaciones);
-        let promedio = calificaciones.reduce((a, b) => a + b) / calificaciones.length;
-        return promedio;
-    }
-}
-
 
 
 function createStudent() {
