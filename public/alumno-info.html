@@ -180,10 +180,11 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <div id="alert"></div>
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Crear Grupo</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Información de <span id="NombreAlumnoInfo"></span></h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -208,17 +209,98 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4"></h1>
                                     </div>
-                                    <form class="student">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="nuevoGrupo" aria-describedby="grupoeHelp"
-                                                placeholder="Nombre del grupo">
+                                    <div class="card-body p0">
+                                        <div class="row">
+                                            <div class="col-lg-12 d-none d-lg-block">
+                                                <div class="text-left">
+                                                    <h2 class="h4 text-gray-900 mb-4">Nombre: <span id="NombreAlumnoInfoNombre"></span></h2>
+                                                </div>
+                                                <div class="text-left">
+                                                    <h2 class="h4 text-gray-900 mb-4">Apellidos: <span id="NombreAlumnoInfoApellido"></span></h2>
+                                                </div>
+                                                <div class="text-left">
+                                                    <h2 class="h4 text-gray-900 mb-4">Edad: <span id="NombreAlumnoInfoEdad"></span></h2>
+                                                </div>
+                                                <div class="text-left">
+                                                    <h2 class="h4 text-gray-900 mb-4">Grupo: <span id="NombreAlumnoInfoGrupo"></span></h2>
+                                                </div>
+                                                <div class="text-left">
+                                                    <h2 class="h4 text-gray-900 mb-4">Materias: <span id="NombreAlumnoInfoMaterias"></span></h2>
+                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Materia inscrita</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>Materia inscrita</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                        <tbody id="table-materias">
+                                                            
+                                                        </tbody>
+                                                    </table>
+
+                                                    <form class="addMateria">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control form-control-user"
+                                                                id="agregar-eliminar-materia" aria-describedby="grupoeHelp"
+                                                                placeholder="Escribe la materia que quieres agregar o eliminar y presiona el boton correspondiente
+                                                                ">
+                                                        </div>
+                                                        <button id="registrarMateria" class="btn btn-primary btn-user">
+                                                            Agregar materia
+                                                        </button>
+                                                        <button id="eliminarMateria" class="btn btn-danger btn-user">
+                                                            Eliminar materia
+                                                        </button>
+                                                        <hr>
+                                                    </form>
+                                                </div>
+                                                <div class="text-left">
+                                                    <h2 class="h4 text-gray-900 mb-4">Calificaciones: <span id="NombreAlumnoInfoMaterias"></span></h2>
+                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Materia</th>
+                                                                <th>Calificación</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>Materia</th>
+                                                                <th>Calificación</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                        <tbody id="table-calificaciones">
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-xl-12 col-lg-12">
+                                                    <div class="card shadow mb-4">
+                                                        <!-- Card Header - Dropdown -->
+                                                        <div class="card-header py-3">
+                                                            <h6 class="m-0 font-weight-bold text-primary">Promedio</h6>
+                                                        </div>
+                                                        <!-- Card Body -->
+                                                        <div class="card-body">
+                                                            <div class="chart-pie pt-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                                                <canvas id="myPieChart" width="486" height="253" style="display: block; width: 486px; height: 253px;" class="chartjs-render-monitor"></canvas>
+                                                            </div>
+                                                            <hr>
+                                                            La evaluación del Alumno <span id="alumnoEval"></span> es :
+                                                            <code id="AlumnoEvalResultado">/js/demo/chart-pie-demo.js</code>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </div>
-                                        <button id="registrarGrupo" class="btn btn-primary btn-user btn-block">
-                                            Registrar Grupo
-                                        </button>
-                                        <hr>
-                                    </form>
+                                    </div>
+
+                                    
                                 </div>
                             </div>
                         </div>
